@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NafasiHealth: health vacancies in Kenya</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f3f6f4;--card:#fff;--ink:#112620;--mute:#566b63;--line:#d8e2dd;--brand:#0e5446;--on:#fff;--acc:#e8a21f;--ok:#d3efde;--okt:#0b5a2f;--wr:#fbe6b0;--wt:#6a4600;--bd:#f8d8d8;--bt:#8a1c1c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0c1814;--card:#13241e;--ink:#e5efeb;--mute:#9ab1a8;--line:#27403a;--brand:#52c4a8;--on:#05221a;--ok:#14402a;--okt:#a8e6c3;--wr:#4a3a0c;--wt:#f6dc9a;--bd:#4a1c1c;--bt:#f5b5b5}}
+:root[data-theme=dark]{--bg:#0c1814;--card:#13241e;--ink:#e5efeb;--mute:#9ab1a8;--line:#27403a;--brand:#52c4a8;--on:#05221a;--ok:#14402a;--okt:#a8e6c3;--wr:#4a3a0c;--wt:#f6dc9a;--bd:#4a1c1c;--bt:#f5b5b5}
+html{color-scheme:light dark;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",Figtree,system-ui,sans-serif;line-height:1.12;margin:0}
+h1{font-size:clamp(2rem,6vw,3.1rem);letter-spacing:-.02em;max-width:16ch}
+h2{font-size:1.5rem;margin-bottom:6px}h3{font-size:1.1rem}
+header{background:var(--brand);color:var(--on)}
+.w{max-width:960px;margin:0 auto;padding:0 16px}
+.lg{font:700 1.3rem "Bricolage Grotesque",sans-serif;padding-top:14px}
+nav{display:flex;gap:4px;overflow-x:auto;padding:8px 0 10px}
+nav a{color:inherit;text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600;white-space:nowrap;opacity:.88}
+nav a.on{background:var(--on);color:var(--brand);opacity:1}
+main{padding:22px 0 40px}
+.card{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.card.of{border-left-color:var(--brand)}.card.cl{border-left-color:var(--acc)}
+.pill{display:inline-block;font-size:.8rem;font-weight:600;padding:2px 9px;border-radius:99px;background:var(--line);margin:0 4px 6px 0}
+.ok{background:var(--ok);color:var(--okt)}.wr{background:var(--wr);color:var(--wt)}.bd{background:var(--bd);color:var(--bt)}
+.m{color:var(--mute);font-size:.92rem}
+button,.b{display:inline-block;font:600 .92rem Figtree,sans-serif;background:var(--brand);color:var(--on);border:0;border-radius:8px;padding:9px 14px;cursor:pointer;text-decoration:none}
+.g{background:transparent;color:var(--ink);border:1px solid var(--line)}.r{background:var(--bd);color:var(--bt)}
+input,select{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+label{display:block;font-weight:600;font-size:.9rem;margin:10px 0 4px}
+.ck{display:flex;gap:14px;flex-wrap:wrap}.ck label{font-weight:500;display:flex;gap:6px;align-items:center;margin:0}.ck input{width:auto}
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line);margin-bottom:14px}
+.tabs button{background:none;color:var(--mute);border-radius:0;border-bottom:3px solid transparent}
+.tabs button.on{color:var(--ink);border-color:var(--brand)}
+.note{background:var(--wr);color:var(--wt);border-radius:8px;padding:8px 12px;font-size:.9rem;margin-bottom:14px}
+.t{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;max-width:90vw}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+</style>
+</head>
+<body>
+<header><div class="w"><div class="lg">NafasiHealth</div><nav></nav></div></header>
+<main><div class="w" id="v"></div></main>
+<script src="config.js"></script>
+<script>
+const A=window.NAFASI||{},BRAND=A.name||"NafasiHealth",API=(A.api||"").replace(/\/$/,""),LIVE=!!API;
+const HT=["County Government","National Government","Private Hospital","NGO","Mission Hospital","Clinic","International Organisation"],CT=["Permanent","Contract","Internship","Locum"];
+let C=["Nairobi","Mombasa","Kisumu","Nakuru","Kiambu","Uasin Gishu","Turkana","Nyeri"],
+K=["Nursing","Midwifery","Clinical Officer","Doctor / Specialist","Allied Health","Lab Technologist","Pharmacy","Public Health"];
+const $=s=>document.querySelector(s),E=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const opt=(a,p)=>(p?`<option value="">${p}</option>`:"")+a.map(x=>`<option>${x}</option>`).join("");
+const toast=m=>{const t=document.createElement("div");t.className="t";t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),2600)};
+let n=1;const J=(t,o,c,k,d,s,src,off,x={})=>({id:n++,t,o,c,k,y:"Permanent",d,s,src,off,...x});
+const S={view:"home",tab:"review",f:{q:"",c:"",k:""},saved:[],
+jobs:[J("Registered Nurse, Theatre","Aga Khan University Hospital","Nairobi","Nursing",12,"live","Official site",1),
+J("Midwife (KRCHN)","Kisumu County Referral Hospital","Kisumu","Midwifery",6,"live","Employer portal",1),
+J("Clinical Officer, Outpatient","Kijabe Hospital","Kiambu","Clinical Officer",15,"live","Employer portal",1),
+J("Medical Laboratory Technician","Employer on JobInKenya","Nairobi","Lab Technologist",25,"live","Job board",0),
+J("Anaesthesiology Residency Training","Kenyatta University Teaching, Referral & Research Hospital","Nairobi","Doctor / Specialist",4,"live","Official site",1),
+J("ICU Nurse","Employer not stated","Nairobi","Nursing",20,"pending","Job board",0,{conf:"high"}),
+J("Pharmacist","Penda Health","Nakuru","Pharmacy",14,"pending","Official site",1,{conf:"medium",nd:1}),
+J("Physiotherapist","Lodwar Hills Hospital","Turkana","Allied Health",30,"pending","Admin entry (Newspaper)",0,{conf:"high"}),
+J("Nursing Officer","Coast General Teaching Hospital","Mombasa","Nursing",0,"live","Official site",1,{fl:"expired"}),
+J("Community Health Nurse","AMREF Health Africa","Turkana","Public Health",9,"live","Official site",1,{fl:"missing"})],
+pend:[],flag:[],src:[{n:"KUTRRH careers",m:"vacancy table",st:"ok"},{n:"Kijabe Hospital recruitment",m:"embedded job data",st:"ok"},
+{n:"JobInKenya, healthcare",m:"embedded job data",st:"review"},{n:"Ministry of Health vacancies",m:"vacancy table",st:"review"},
+{n:"Kenyatta National Hospital",m:"",st:"blocked",note:"The site shows a bot-check page to automated visitors. We don’t try to get around it. Ask for a feed or add vacancies by hand."},
+{n:"Public Service Commission",m:"",st:"blocked",note:"The site’s robots.txt does not allow automated collection."},
+{n:"LinkedIn jobs",m:"",st:"locked",note:"LinkedIn’s terms forbid scraping. Add its vacancies by hand."}]};
+const tk=()=>sessionStorage.getItem("tk"),days=x=>Math.ceil((new Date(x)-Date.now())/864e5);
+async function api(m,p,b){const r=await fetch(API+"/api"+p,{method:m,headers:{"Content-Type":"application/json",...(tk()?{Authorization:"Bearer "+tk()}:{})},body:b?JSON.stringify(b):undefined});const j=await r.json().catch(()=>({}));if(!r.ok){if(r.status==401)sessionStorage.removeItem("tk");throw Error(j.error||"Something went wrong. Try again")}return j}
+const FL={expired:"expired",missing_from_source:"missing",official_source_found:"official"};
+const mj=j=>({id:j.id,t:j.title,o:j.org_name,c:j.county,k:j.category,y:j.contract_type,d:days(j.expires_at),s:(j.status||"approved")=="approved"?"live":j.status,src:j.source_name||j.source,off:j.official,conf:j.confidence,nd:j.deadline_known===false,fl:FL[j.review_flag]||0,u:j.original_url});
+async function load(){if(!LIVE)return;try{if(!S.meta){S.meta=await api("GET","/meta");C=S.meta.counties;K=S.meta.categories}
+S.jobs=(await api("GET","/jobs?per_page=50")).jobs.map(mj);
+if(tk()){const[p,f,x]=await Promise.all([api("GET","/admin/jobs?status=pending"),api("GET","/admin/flagged"),api("GET","/admin/sources")]);S.pend=p.jobs.map(mj);S.flag=f.jobs.map(mj);S.src=x.sources.map(z=>({id:z.id,n:z.name,m:z.kind=="rss"?"feed":"web page",st:!z.collection_allowed?"locked":z.terms_confirmed?(z.last_status=="blocked"?"blocked":"ok"):"review",note:z.status_note||z.last_error}))}}catch(e){S.err=e.message}}
+const loginHtml='<h2>Admin sign-in</h2><form id="lg"><label>Email</label><input name="e" type="email" required autocomplete="username"><label>Password</label><input name="p" type="password" required autocomplete="current-password"><div class="row"><button>Sign in</button></div></form>';
+const card=(j,adm)=>`<div class="card ${j.off?"of":"cl"}"><div>${j.off?'<span class="pill ok">Official source</span>':'<span class="pill wr">Collected from a job board</span>'}<span class="pill">${j.k}</span><span class="pill">${j.y}</span></div><h3>${E(j.t)}</h3><div class="m">${E(j.o)}, ${j.c}. ${j.d>0?"Closes in "+j.d+" days.":"Closing date has passed."}</div>${adm||`<div class="row"><a class="b" href="${j.u?E(j.u):"#home"}" ${j.u?'target="_blank" rel="noopener"':'data-a="open"'}>View original advert</a><button class="g" data-a="save" data-i="${j.id}">${S.saved.includes(j.id)?"Saved":"Save"}</button></div>`}</div>`;
+const form=k=>`<form id="f" data-k="${k}"><div class="gr"><div><label>Job title</label><input name="t" required minlength="5"></div><div><label>${k=="admin"?"Employer":"Hospital"}</label><input name="o" required></div><div><label>County</label><select name="c">${opt(C)}</select></div><div><label>Category</label><select name="k">${opt(K)}</select></div><div><label>Closing date</label><input name="dl" type="date" required></div>${k=="admin"?`<div><label>Where did you find it?</label><select name="s"><option value="newspaper">Newspaper</option><option value="social_media">Social media</option><option value="referral">Referral</option><option value="email_or_phone">Email or phone</option></select></div><div><label>Employer type</label><select name="h">${opt(HT)}</select></div><div><label>Contract</label><select name="y">${opt(CT)}</select></div><div><label>Where to apply (web address or email)</label><input name="u" required></div><div><label>Short description</label><input name="d" required minlength="20"></div>`:`<div><label>Link where people apply</label><input name="u" placeholder="https://" required></div>`}</div><div class="row"><button>Send for review</button></div></form>`;
+const act=(j,a)=>a.map(([l,x,c])=>`<button class="${c||""}" data-a="${x}" data-i="${j.id}">${l}</button>`).join("");
+const V={
+home:()=>`<h1>Health jobs in Kenya, the day they’re posted</h1><p class="m" style="max-width:52ch;margin:12px 0 18px">A person on our team checks every vacancy. Each one links to the employer’s own advert, and the coloured edge shows where we found it.</p><div class="gr"><input id="q" aria-label="Search" placeholder="Search by title or hospital" value="${E(S.f.q)}"><select id="c" aria-label="County">${opt(C,"All counties")}</select><select id="k" aria-label="Category">${opt(K,"All categories")}</select></div><div id="L" style="margin-top:16px"></div>`,
+alerts:()=>`<h2>Get alerts for new vacancies</h2><p class="m">Choose what you want to hear about. We’ll message you when a matching vacancy is approved.</p><div class="note">${LIVE?"Alert sign-up opens in the next version.":"Demo only: nothing here is saved or sent."}</div><form id="al"><div class="gr"><div><label>Your county</label><select>${opt(C)}</select></div><div><label>Phone for SMS</label><input placeholder="0712 345 678"></div></div><label>Categories</label><div class="ck">${K.map(k=>`<label><input type="checkbox"> ${k}</label>`).join("")}</div><label>Send alerts by</label><div class="ck"><label><input type="checkbox" checked> Email</label><label><input type="checkbox" checked> SMS</label></div><div class="row"><button>Turn on alerts</button></div></form>`,
+hospitals:()=>`<h2>Post a vacancy</h2><p class="m">For verified hospitals. A person checks each vacancy before it appears, and applicants apply through your own link.</p>${form("partner")}`,
+bot:()=>`<h2>About our reader, AfyaJobsBot</h2><p>${BRAND} helps health workers in Kenya find vacancies. Our program reads vacancy pages that employers publish openly.</p><div class="card"><h3>What it does</h3><p class="m">It reads each site’s robots.txt first and follows it. It never tries to get past logins or bot-check pages. It visits each site only a few times a day, keeps a short excerpt with a link back, removes personal phone numbers and emails, and a person reviews every vacancy before anyone sees it.</p></div><div class="card"><h3>If you run a hospital website</h3><p class="m">Email ${A.contact||"hello@example.com"} to stop us, or to send us your vacancies through a feed or our free partner portal.</p></div>`,
+admin:()=>{if(LIVE&&!tk())return loginHtml;const p=LIVE?S.pend:S.jobs.filter(j=>j.s=="pending"),f=LIVE?S.flag:S.jobs.filter(j=>j.fl&&j.s=="live"),T=[["review","Review queue ("+p.length+")"],["flag","Flagged ("+f.length+")"],["src","Sources"],["add","Add a vacancy"]];
+let b="";if(S.tab=="review")b=p.map(j=>card(j,`<div class="m">Found via: ${E(j.src)}</div><div>${!j.off?'<span class="pill wr">Third-party site, not the employer</span>':""}${j.nd?'<span class="pill wr">No closing date in the advert: default used</span>':""}<span class="pill">Reading confidence: ${j.conf}</span></div><div class="row">${act(j,[["Approve and alert","ok"],["Reject","no","r"]])}</div>`)).join("")||'<div class="card m">The queue is clear. New vacancies appear here for review.</div>';
+if(S.tab=="flag")b=f.map(j=>card(j,`<div><span class="pill bd">${{expired:"Closing date has passed",missing:"No longer listed at its source",official:"An official source has published this vacancy"}[j.fl]}</span></div><div class="row">${act(j,j.fl=="official"?[["Use official link","off"],["Keep current link","dis","g"]]:[["Close","close","r"],["Extend 14 days","ext"]].concat(j.fl=="missing"?[["Still open","dis","g"]]:[]))}</div>`)).join("")||'<div class="card m">Nothing needs a second look.</div>';
+if(S.tab=="src")b=S.src.map((s,i)=>`<div class="card ${s.st=="ok"?"of":"cl"}"><span class="pill ${s.st=="ok"?"ok":s.st=="review"?"wr":"bd"}">${{ok:"Collecting every 6 hours",review:"Needs a terms check",blocked:"Not collectable",locked:"Locked"}[s.st]}</span><h3>${s.n}</h3><div class="m">${s.m?"Read as: "+s.m:E(s.note)}</div>${s.st=="review"?`<div class="ck" style="margin-top:8px"><label><input type="checkbox" id="t${i}"> I read this site’s terms and they allow collection</label></div><div class="row"><button data-a="src" data-i="${i}">Approve source</button></div>`:""}</div>`).join("");
+if(S.tab=="add")b=`<p class="m">For vacancies found in newspapers, on social media or through referrals.</p>${form("admin")}`;
+return`<h2>Admin</h2>${LIVE?'<div class="row"><button class="g" data-a="out">Sign out</button></div>':'<div class="note">Demo data: nothing here is saved or sent.</div>'}<div class="tabs">${T.map(([k,l])=>`<button class="${S.tab==k?"on":""}" data-a="tab" data-t="${k}">${l}</button>`).join("")}</div>${b}`}};
+const list=()=>{const{q,c,k}=S.f,L=S.jobs.filter(j=>j.s=="live"&&j.d>0&&(!c||j.c==c)&&(!k||j.k==k)&&(!q||(j.t+j.o).toLowerCase().includes(q.toLowerCase())));$("#L").innerHTML=L.map(j=>card(j)).join("")||'<div class="card m">No vacancies match yet. Turn on alerts and we’ll tell you when one is approved.</div>'};
+function draw(){const v=S.view;$(".lg").textContent=BRAND;if(S.err){toast(S.err);S.err=""}$("nav").innerHTML=[["home","Vacancies"],["alerts","Get alerts"],["hospitals","For hospitals"],["bot","About our reader"],["admin","Admin"]].map(([k,l])=>`<a href="#${k}" class="${v==k?"on":""}">${l}</a>`).join("");$("#v").innerHTML=V[v]();
+if(v=="home"){$("#c").value=S.f.c;$("#k").value=S.f.k;list();$("#q").oninput=e=>{S.f.q=e.target.value;list()};$("#c").onchange=e=>{S.f.c=e.target.value;list()};$("#k").onchange=e=>{S.f.k=e.target.value;list()}}}
+document.addEventListener("click",async e=>{const b=e.target.closest("[data-a]");if(!b)return;const a=b.dataset.a,i=+b.dataset.i,j=S.jobs.find(x=>x.id==i);
+if(a=="open"){e.preventDefault();return toast("Demo: this opens the employer’s own advert")}
+if(a=="save")S.saved=S.saved.includes(i)?S.saved.filter(x=>x!=i):[...S.saved,i];
+if(a=="tab")S.tab=b.dataset.t;
+if(a=="out"){sessionStorage.removeItem("tk");S.pend=[];S.flag=[]}
+if(a=="src"&&!$("#t"+i).checked)return toast("Tick the box to confirm you read the terms");
+if(LIVE&&["ok","no","close","ext","dis","off","src"].includes(a)){try{
+if(a=="ok"){const r=await api("POST","/admin/jobs/"+i+"/approve",{});toast("Approved. "+r.alerts_queued+" alerts queued"+(r.warnings.length?". Check: "+r.warnings[0]:""))}
+else if(a=="no"){const why=prompt("Why is this being rejected? (at least 5 characters)");if(!why)return;await api("POST","/admin/jobs/"+i+"/reject",{reason:why});toast("Rejected")}
+else if(a=="src"){await api("POST","/admin/sources/"+S.src[i].id+"/approve",{terms_confirmed:true});toast("Source approved")}
+else{await api("POST","/admin/jobs/"+i+"/flag",{action:{close:"close",ext:"extend",dis:"dismiss",off:"use_official"}[a],expires_in_days:14});toast("Done")}
+await load()}catch(err){return toast(err.message)}}
+else if(!LIVE){if(a=="ok"){j.s="live";toast("Approved. Alerts are queued for matching job seekers")}
+if(a=="no"){j.s="rejected";toast("Rejected")}
+if(a=="close"){j.s="closed";toast("Closed")}
+if(a=="ext"){j.d=14;j.fl=0;toast("Extended by 14 days")}
+if(a=="dis"){j.fl=0;toast("Marked as still open")}
+if(a=="src"){S.src[i].st="ok";toast("Source approved")}}
+draw()});
+document.addEventListener("submit",async e=>{e.preventDefault();const f=e.target,d=Object.fromEntries(new FormData(f));
+if(f.id=="lg"){try{const r=await api("POST","/auth/login",{email:d.e,password:d.p});if(r.user.role!="admin")throw Error("This area is for administrators");sessionStorage.setItem("tk",r.token);await load();draw()}catch(err){toast(err.message)}return}
+if(f.id=="al")return toast(LIVE?"Alert sign-up opens in the next version":"Demo: nothing is saved. Real alerts arrive by SMS or email");
+const adm=f.dataset.k=="admin";if(LIVE&&!adm)return toast("Hospital accounts open in the next version");
+const dd=days(d.dl);if(dd<1)return toast("The closing date must be in the future");
+if(LIVE){try{await api("POST","/admin/jobs",{title:d.t,org_name:d.o,county:d.c,category:d.k,deadline:d.dl,source_channel:d.s,description:d.d,hospital_type:d.h,contract_type:d.y,apply_url:d.u});await load()}catch(err){return toast(err.message)}}
+else S.jobs.push(J(d.t,d.o,d.c,d.k,dd,"pending",adm?"Admin entry ("+d.s+")":"Employer portal",adm?0:1,{conf:"high"}));
+toast("Sent for review");if(adm)S.tab="review";f.reset();draw()});
+const route=async()=>{const h=location.hash.slice(1);S.view=V[h]?h:"home";draw();await load();draw()};
+addEventListener("hashchange",route);route();
+</script>
+</body>
+</html>
